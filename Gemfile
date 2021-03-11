@@ -33,9 +33,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :production do
-  gem 'pg', '~> 1.1'
-end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -56,6 +53,10 @@ group :test do
   gem 'webdrivers'
 end
 
+group :production do
+  gem 'pg', '~> 1.1'
+  gem 'rspec-rails', '~> 4.1.0'
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'

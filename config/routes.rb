@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     #root to: "admin/admin/home#index" (dá errado)
     #root to: "admin/home#index" (dá errado mas é o que o prof escreve na aula)
     root to: "home#index" #só tá dando certo c esse)
+    resources :admins
   end
 end
