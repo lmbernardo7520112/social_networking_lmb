@@ -10,6 +10,7 @@
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
       <th scope="col">Criado em</th>
+      <th scope="col">Criado em</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td><%= admin.name %></td>
       <td><%= admin.email %></td>
       <td><%= admin.created_at %></td>
+      <td><%= link_to "Editar", edit_admin_admin_path(admin), class: "btn btn-warning btn-sm" %></td>
     </tr>
     <% end %>
   </tbody>
