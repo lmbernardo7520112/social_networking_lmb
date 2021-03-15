@@ -1,4 +1,4 @@
-<div style="height: 100%!important;background-image: url('<%= image_path('login_escola_bg.jpeg') %>'); background-repeat: no-repeat; background-size: cover">
+<div style="height: 100%!important;background-image: url('<%= resource_name == :admin ? image_path('login_escola_bg.jpeg') : image_path('backgroundSalaAula_2.png') %>'); background-repeat: no-repeat; background-size: cover">
   <div class="offset-4 col-4 authentication-inner py-5">
     <div class="card" style="background-color: hsla(201, 100%, 6%, 0.6%);">
       <div class="p-4 p-sm-5">
@@ -6,13 +6,17 @@
           <%= image_tag('logoEscola', style: 'height: 90px;') %>
         </div>
 
-        <h5 class="text-center text-muted font-weight-normal mb-4">Acesso ao Painel Administrativo</h5>
+
+        <% if resource_name == :admin %>
+          <h5 class="text-center text-muted  font-weight-normal mb-4">Acesso ao Painel Administrativo</h5>
+        <% end %>
 
         <% if alert %>
           <div class="d-flex justify-content-center">
             <p class="text-danger"><%= alert %></p>
           </div>
         <% end %>
+
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-group">
             <%= f.label :email, class: 'form-label' %>
@@ -25,6 +29,12 @@
           <div class="d-flex justify-content-center align-items-center m-0">
             <%= f.submit 'Entrar', class: "btn btn-primary" %>
           </div>
+        <% end %>
+
+        <% if resource_name == :user %>
+          <%= link_to new_user_registration_path, class: "d-flex justify-content-center align_items-center mt-4" do %>
+            Cadastrar
+          <% end %>
         <% end %>
       </div>
     </div>
