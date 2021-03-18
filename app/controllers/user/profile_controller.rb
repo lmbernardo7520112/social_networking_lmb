@@ -1,6 +1,6 @@
 class User::ProfileController < UserController
 
     def show
-        @user = current_user
+        @post = Post.new
     end
 end
