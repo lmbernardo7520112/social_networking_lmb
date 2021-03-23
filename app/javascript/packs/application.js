@@ -10,6 +10,10 @@ import "channels"
 
 import "./like_toggle"
 
+import $ from 'jquery';
+global.$ = jQuery;
+
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
