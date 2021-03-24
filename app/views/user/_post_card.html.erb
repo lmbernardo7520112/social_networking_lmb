@@ -7,15 +7,34 @@
         <span aria-hidden="true">&times;</span>
       <% end %>
     <% end %>
-  </div>
-  <div class="card-body">
-    <small class="text-muted"><%= post.created_at.strftime("%d/%m/%Y %H:%M") %></small>
-    <p class="card-text"><%= post.body %></p>
+</div>
+<div class="card-body">
+  <small class="text-muted"><%= post.created_at.strftime("%d/%m/%Y %H:%M") %></small>
+  <p class="card-text"><%= post.body %></p>
 
-    <%= link_to nil, {class: "like-toggle", id: post.id, remote: true} do %>
-      <i style="font-size:18px;color:<%= post.liked_by_user?(current_user) ? "#80c0ff" : "#ffffff" %> " class="fa fa-thumbs-up"></i>
-    <% end %>
+  <%= link_to nil, {class: "like-toggle", id: post.id, remote: true} do %>
+    <i style="font-size:18px;color:<%= post.liked_by_user?(current_user) ? "#80c0ff" : "#ffffff" %> " class="fa fa-thumbs-up"></i>
+  <% end %>
 
     <span class="ml-2"><%= post.likes.count %></span>
   </div>
 </div>
+
+
+<%= form_with(model: [:user, @comment]) do |f| %>
+  <%= f.hidden_field(:post_id, value: post.id) %>
+  <div class="form-group">
+  <%= f.text_area :body, rows: 2, class: "form_control", placeholder: "Escreva seu comentário...", required: true %>
+  </div>
+  <div class="d-flex">
+    <button type="submit" class="btn btn-sm btn-primary ml-auto">Enviar</button>
+  </div>
+<% end %>
+
+<div id="post<%= post.id %>-comments">
+<%= post.comments.order(created_at: :desc).each do |comment| %>
+  <%= render("comment_card", comment: comment) %>
+<% end %>
+</div>
+
+<hr class="bg-secondary">
