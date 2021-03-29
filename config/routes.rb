@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'users/registrations'}
   devise_for :admins, skip: [:registrations], controllers: {sessions: 'admins/sessions'}
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   namespace :admin do
-    #admin/posts
-    #root to: "admin/admin/home#index" (dá errado)
-    #root to: "admin/home#index" (dá errado mas é o que o prof escreve na aula)
-    root to: "home#index" #só tá dando certo c esse)
+    root to: "home#index"
     resources :admins
     resources :users, only: :index
     resources :posts, only: [:index, :show]
@@ -29,6 +26,6 @@ Rails.application.routes.draw do
 
     post 'follow/:id', to: "subscriptions#follow", as: :follow
     post 'unfollow/:id', to: "subscriptions#unfollow", as: :unfollow
-
   end
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "./like_toggle"
+import "./comment_toggle"
 
 import $ from 'jquery';
 global.$ = jQuery;
